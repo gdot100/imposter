@@ -1,0 +1,36 @@
+import { useState } from 'react'
+import SettingsCard from './SettingsCard'
+
+export default function TimeLimitCard() {
+  const [enabled, setEnabled] = useState(false)
+
+  return (
+    <SettingsCard
+      icon={
+        <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
+          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+        </div>
+      }
+      title="Time Limit"
+    >
+      <div className="flex items-center justify-between">
+        <p className="text-gray-700 font-medium">{enabled ? 'Enabled' : 'Disabled'}</p>
+        <button
+          onClick={() => setEnabled(!enabled)}
+          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+            enabled ? 'bg-blue-500' : 'bg-gray-300'
+          }`}
+        >
+          <span
+            className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+              enabled ? 'translate-x-6' : 'translate-x-1'
+            }`}
+          />
+        </button>
+      </div>
+    </SettingsCard>
+  )
+}
+
