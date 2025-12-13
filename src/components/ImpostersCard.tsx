@@ -61,7 +61,7 @@ export default function ImpostersCard({ imposters, maxImposters, onImpostersChan
         <button
           onClick={handleDecrement}
           disabled={imposters <= 1}
-          className="w-8 h-8 flex items-center justify-center bg-gray-300 text-white rounded-lg text-lg font-medium hover:bg-gray-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-10 h-10 flex items-center justify-center bg-gray-300 text-white rounded-lg text-lg font-medium hover:bg-gray-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
@@ -77,7 +77,7 @@ export default function ImpostersCard({ imposters, maxImposters, onImpostersChan
         <button
           onClick={handleIncrement}
           disabled={imposters >= maxImposters}
-          className="w-8 h-8 flex items-center justify-center bg-gray-300 text-white rounded-lg text-lg font-medium hover:bg-gray-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-10 h-10 flex items-center justify-center bg-gray-300 text-white rounded-lg text-lg font-medium hover:bg-gray-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />

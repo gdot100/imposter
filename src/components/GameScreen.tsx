@@ -57,7 +57,7 @@ export default function GameScreen({ onClose, playerName, word, onNextPlayer, on
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
-        <div className="text-center">
+        <div className="text-center px-[45px]">
           <h1 className="text-4xl font-bold text-gray-800 uppercase tracking-tight">
             IMPOSTER WHO?
           </h1>
@@ -74,9 +74,10 @@ export default function GameScreen({ onClose, playerName, word, onNextPlayer, on
               top: -30,
               left: -30,
               right: -30,
-              bottom: -30,
+              bottom: 82,
               background: 'transparent',
               zIndex: 2,
+              maxWidth: '100vw',
             }}
             onMouseDown={handleStartHold}
             onMouseUp={handleEndHold}
@@ -85,28 +86,28 @@ export default function GameScreen({ onClose, playerName, word, onNextPlayer, on
             onTouchEnd={handleEndHold}
           />
           <div
-            className={`bg-cyan-300 rounded-3xl p-12 shadow-lg transition-all`}
+            className={`bg-cyan-300 rounded-3xl p-6 sm:p-8 lg:p-12 shadow-lg transition-all w-full max-w-lg mx-auto`}
             onMouseDown={handleStartHold}
             onMouseUp={handleEndHold}
             onMouseLeave={handleEndHold}
             onTouchStart={handleStartHold}
             onTouchEnd={handleEndHold}
-            style={{ width: 540, height: 450, userSelect: 'none', touchAction: 'none' }}
+            style={{ minHeight: '300px', aspectRatio: '1.2', userSelect: 'none', touchAction: 'none' }}
           >
             <div className="text-center">
-              <h2 className="text-4xl font-bold text-gray-800 uppercase tracking-tight mb-8">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 uppercase tracking-tight mb-4 sm:mb-6 lg:mb-8">
                 {playerName}
               </h2>
               
               {isHolding ? (
                 <div className="flex justify-center">
-                  <button className="px-8 py-4 bg-white border-2 border-gray-800 rounded-xl text-gray-800 font-medium text-xl">
-                    {isCurrentPlayerImpostor ? (imposterHint ? `Imposter, Hint: ${imposterHint}` : 'Imposter') : word}
-                  </button>
+                    <button className="px-6 sm:px-8 py-3 sm:py-4 bg-white border-2 border-gray-800 rounded-xl text-gray-800 font-medium text-lg sm:text-xl">
+                      {isCurrentPlayerImpostor ? (imposterHint ? `Imposter, Hint: ${imposterHint}` : 'Imposter') : word}
+                    </button>
                 </div>
               ) : hasRevealed ? (
                 <div className="space-y-4">
-                  <p className="text-gray-700 text-lg font-medium">
+                  <p className="text-gray-700 text-base sm:text-lg font-medium">
                     Hold to reveal the word
                   </p>
                   <div className="flex justify-center">
@@ -127,7 +128,7 @@ export default function GameScreen({ onClose, playerName, word, onNextPlayer, on
                 </div>
               ) : (
                 <div className="space-y-4">
-                  <p className="text-gray-700 text-lg font-medium">
+                  <p className="text-gray-700 text-base sm:text-lg font-medium">
                     Hold to reveal the word
                   </p>
                   <div className="flex justify-center">
@@ -150,8 +151,8 @@ export default function GameScreen({ onClose, playerName, word, onNextPlayer, on
             </div>
           </div>
           
-          {/* Next Player (or Finish) button fixed at bottom; logic depends on player position and reveal */}
-          <div style={{ position: 'fixed', bottom: 20, left: 0, right: 0, display: 'flex', justifyContent: 'center' }}>
+          {/* Next Player (or Finish) button positioned at bottom of content area */}
+          <div className="mt-6 flex justify-center">
             {!hasRevealed ? (
               <div style={{ visibility: 'hidden' }}>
                 <button className="px-8 py-4 bg-blue-500 text-white rounded-xl text-lg font-semibold" disabled>
@@ -160,13 +161,13 @@ export default function GameScreen({ onClose, playerName, word, onNextPlayer, on
               </div>
             ) : !isLastPlayer ? (
               <div onClick={onNextPlayer} style={{ cursor: 'pointer' }}>
-                <button className="px-8 py-4 bg-blue-500 text-white rounded-xl text-lg font-semibold hover:bg-blue-600 transition-colors shadow-md">
+                <button className="px-6 sm:px-8 py-3 sm:py-4 bg-blue-500 text-white rounded-xl text-base sm:text-lg font-semibold hover:bg-blue-600 transition-colors shadow-md">
                   Next Player
                 </button>
               </div>
             ) : (
               <div className="flex flex-col items-center">
-                <button onClick={onRevealMenu} className="px-8 py-4 bg-green-500 text-white rounded-xl text-lg font-semibold hover:bg-green-600 transition-colors shadow-md mb-4">
+                <button onClick={onRevealMenu} className="px-6 sm:px-8 py-3 sm:py-4 bg-green-500 text-white rounded-xl text-base sm:text-lg font-semibold hover:bg-green-600 transition-colors shadow-md mb-4">
                   Start Game
                 </button>
               </div>

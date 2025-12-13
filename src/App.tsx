@@ -15,15 +15,11 @@ interface WordData {
   arousal: { mean: number; sd: number };
   dominance: { mean: number; sd: number };
   word_frequency: string | number;
+  hint_word: string;
 }
 
 const words: WordData[] = wordsRaw as WordData[];
 
-// Hint words for imposters
-const HINT_LIST = [
-  'Food', 'Animal', 'Vehicle', 'Building', 'Object', 'Color', 'Weather', 'Music',
-  'Profession', 'Sport', 'Nature', 'Technology', 'Emotion', 'Shape', 'Number', 'Time'
-]
 
 // Weighted random selection based on arousal values
 function selectWeightedWord(wordList: WordData[]) {
@@ -136,13 +132,9 @@ const handleStartGame = () => {
   // Generate hints for imposters if hint feature is enabled
   if (imposterHintEnabled) {
     const hints: {[key: number]: string} = {};
-    const availableHints = [...HINT_LIST];
     chosen.forEach(impostorIndex => {
-      if (availableHints.length > 0) {
-        const hintIndex = Math.floor(Math.random() * availableHints.length);
-        hints[impostorIndex] = availableHints[hintIndex];
-        availableHints.splice(hintIndex, 1);
-      }
+      // Use the hint_word from the selected word object
+      hints[impostorIndex] = selectedWordObj.hint_word;
     });
     setImposterHints(hints);
   } else {
@@ -216,12 +208,14 @@ const handleNextPlayer = () => {
             </svg>
           </button>
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-800 uppercase tracking-tight">
-              IMPOSTER
-            </h1>
-            <h2 className="text-4xl font-bold text-gray-800 uppercase tracking-tight">
-              WHO?
-            </h2>
+            <div className="flex flex-wrap justify-center gap-2">
+              <h1 className="text-4xl font-bold text-gray-800 uppercase tracking-tight">
+                IMPOSTER
+              </h1>
+              <h2 className="text-4xl font-bold text-gray-800 uppercase tracking-tight">
+                WHO?
+              </h2>
+            </div>
           </div>
         </header>
 
@@ -259,14 +253,16 @@ const handleNextPlayer = () => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
         </button>
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-800 uppercase tracking-tight">
-            IMPOSTER
-          </h1>
-          <h2 className="text-4xl font-bold text-gray-800 uppercase tracking-tight">
-            WHO?
-          </h2>
-        </div>
+          <div className="text-center">
+            <div className="flex flex-wrap justify-center gap-2 px-[45px]">
+              <h1 className="text-4xl font-bold text-gray-800 uppercase tracking-tight">
+                IMPOSTER
+              </h1>
+              <h2 className="text-4xl font-bold text-gray-800 uppercase tracking-tight">
+                WHO?
+              </h2>
+            </div>
+          </div>
       </header>
 
       {/* Content */}
@@ -279,7 +275,7 @@ const handleNextPlayer = () => {
         <div className="pt-4">
           <button
             onClick={handleStartGame}
-            className="w-full px-6 py-4 bg-blue-500 text-white rounded-xl text-lg font-semibold hover:bg-blue-600 transition-colors shadow-md"
+            className="w-full px-6 py-3 sm:py-4 bg-blue-500 text-white rounded-xl text-base sm:text-lg font-semibold hover:bg-blue-600 transition-colors shadow-md"
           >
             Start Game
           </button>
