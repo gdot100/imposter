@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/imposter/', // Updated for GitHub Pages project repository
+  base: '/', // Use root path for local development
 })
 

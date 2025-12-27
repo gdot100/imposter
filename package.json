@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:gh-pages": "vite build --config vite.gh-pages.config.ts",
     "preview": "vite preview"
   },
   "dependencies": {

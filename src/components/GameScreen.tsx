@@ -10,6 +10,7 @@ interface GameScreenProps {
   onRevealMenu?: () => void;
   isCurrentPlayerImpostor?: boolean;
   imposterHint?: string;
+  timeRemaining?: number | null;
 }
 
 export default function GameScreen({ onClose, playerName, word, onNextPlayer, onWordRevealed, isLastPlayer, onRevealMenu, isCurrentPlayerImpostor, imposterHint }: GameScreenProps) {
@@ -98,12 +99,12 @@ export default function GameScreen({ onClose, playerName, word, onNextPlayer, on
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 uppercase tracking-tight mb-4 sm:mb-6 lg:mb-8">
                 {playerName}
               </h2>
-              
+
               {isHolding ? (
                 <div className="flex justify-center">
-                    <button className="px-6 sm:px-8 py-3 sm:py-4 bg-white border-2 border-gray-800 rounded-xl text-gray-800 font-medium text-lg sm:text-xl">
-                      {isCurrentPlayerImpostor ? (imposterHint ? `Imposter, Hint: ${imposterHint}` : 'Imposter') : word}
-                    </button>
+                  <button className="px-6 sm:px-8 py-3 sm:py-4 bg-white border-2 border-gray-800 rounded-xl text-gray-800 font-medium text-lg sm:text-xl">
+                    {isCurrentPlayerImpostor ? (imposterHint ? `Imposter, Hint: ${imposterHint}` : 'Imposter') : word}
+                  </button>
                 </div>
               ) : hasRevealed ? (
                 <div className="space-y-4">
@@ -150,7 +151,7 @@ export default function GameScreen({ onClose, playerName, word, onNextPlayer, on
               )}
             </div>
           </div>
-          
+
           {/* Next Player (or Finish) button positioned at bottom of content area */}
           <div className="mt-6 flex justify-center">
             {!hasRevealed ? (
